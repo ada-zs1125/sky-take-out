@@ -19,6 +19,7 @@ import com.sky.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
@@ -29,6 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
     /**
      * 员工登录
@@ -123,4 +126,19 @@ public class EmployeeServiceImpl implements EmployeeService {
         return new PageResult(total, records);
     }
 
+
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+
+        Employee employee =new Employee();
+        employee.setId(id);
+        employee.setStatus(status);
+
+        employeeMapper.update(employee);
+    }
 }
