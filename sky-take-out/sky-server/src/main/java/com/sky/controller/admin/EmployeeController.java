@@ -110,11 +110,42 @@ public class EmployeeController {
      */
     @PostMapping("/status/{status}")
     @ApiOperation("Enable and disable employee accounts")
+
+    //修改类型的函数 Result<>不需要写泛型 但是查询累的需要（例如上边那个page）
     public Result startOrStop(@PathVariable Integer status,Long id){
         log.info("启用禁用员工账号：{},{}",status,id);
         employeeService.startOrStop(status,id);//后绪步骤定义
         return Result.success();
     }
+
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("Query employee information based on ID")
+    public Result<Employee> getById(@PathVariable Long id){
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+
+    /**
+     * 编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("Update employee information")
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息：{}", employeeDTO);
+        employeeService.update(employeeDTO);
+        return Result.success();
+    }
+
+
 
 
 
