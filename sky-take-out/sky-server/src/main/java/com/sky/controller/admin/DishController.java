@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static java.util.ResourceBundle.clearCache;
 
 @RestController
@@ -50,6 +52,23 @@ public class DishController {
         log.info("菜品分页查询:{}", dishPageQueryDTO);
         PageResult pageResult = dishService.pageQuery(dishPageQueryDTO);//后绪步骤定义
         return Result.success(pageResult);
+    }
+
+    /**
+     * 菜品批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    @ApiOperation("Batch deletion of dishes")
+    public Result delete(@RequestParam List<Long> ids) {
+        log.info("菜品批量删除：{}", ids);
+        dishService.deleteBatch(ids);
+
+        //将所有的菜品缓存数据清理掉，所有以dish_开头的key
+        //clearCache("dish_*");
+        return Result.success();
     }
 
 }
