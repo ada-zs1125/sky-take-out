@@ -214,6 +214,22 @@ public class DishServiceImpl implements DishService {
             }
         }
 
-
     }
+
+    /**
+     * 根据分类id查询菜品
+     * @param categoryId
+     * @return
+     */
+
+    //查询某个分类已起售的菜品 查询条件不止一个，而且以后可能会更多。所以用 Dish 对象做“查询条件容器”。 这叫做动态查询
+    public List<Dish> list(Long categoryId) {
+        Dish dish = Dish.builder()
+                .categoryId(categoryId)
+                .status(StatusConstant.ENABLE)
+                .build();
+        return dishMapper.list(dish);
+    }
+
+
 }
