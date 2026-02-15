@@ -47,52 +47,53 @@ public class ReportController {
         return Result.success(reportService.getTurnover(begin, end));
     }
 
-//    /**
-//     * 用户数据统计
-//     * @param begin
-//     * @param end
-//     * @return
-//     */
-//    @GetMapping("/userStatistics")
-//    @ApiOperation("用户数据统计")
-//    public Result<UserReportVO> userStatistics(
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
-//
-//        return Result.success(reportService.getUserStatistics(begin,end));
-//    }
-//
-//    /**
-//     * 订单数据统计
-//     * @param begin
-//     * @param end
-//     * @return
-//     */
-//    @GetMapping("/ordersStatistics")
-//    @ApiOperation("用户数据统计")
-//    public Result<OrderReportVO> orderStatistics(
-//            @DateTimeFormat(pattern = "yyyy-MM-dd")
-//            LocalDate begin,
-//            @DateTimeFormat(pattern = "yyyy-MM-dd")
-//            LocalDate end){
-//
-//        return Result.success(reportService.getOrderStatistics(begin,end));
-//    }
-//
-//    /**
-//     * 销量排名统计
-//     * @param begin
-//     * @param end
-//     * @return
-//     */
-//    @GetMapping("/top10")
-//    @ApiOperation("销量排名统计")
-//    public Result<SalesTop10ReportVO> top10(
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
-//            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
-//        return Result.success(reportService.getSalesTop10(begin,end));
-//    }
-//
+    /**
+     * 用户数据统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/userStatistics")
+    @ApiOperation("用户数据统计")
+    public Result<UserReportVO> userStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+
+        return Result.success(reportService.getUserStatistics(begin,end));
+    }
+
+    /**
+     * 订单数据统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/ordersStatistics")
+    @ApiOperation("用户数据统计")
+    public Result<OrderReportVO> orderStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd")
+            LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd")
+            LocalDate end){
+
+        return Result.success(reportService.getOrderStatistics(begin,end));
+
+    }
+
+    /**
+     * 销量排名统计
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/top10")
+    @ApiOperation("销量排名统计")
+    public Result<SalesTop10ReportVO> top10(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        return Result.success(reportService.getSalesTop10(begin,end));
+    }
+
 //    /**
 //     * 导出运营数据报表
 //     * @param response
@@ -102,4 +103,5 @@ public class ReportController {
 //    public void export(HttpServletResponse response){
 //        reportService.exportBusinessData(response);
 //    }
+
 }
