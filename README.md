@@ -3,6 +3,10 @@
 
 基于 **Spring Boot + MyBatis + Redis + MySQL + Nginx + 阿里云 OSS** 开发的前后端分离客制化外卖订单系统，支持后台管理端与用户端，具备商品管理、订单管理、购物车、图片上传等核心功能。
 
+
+**核心导读：** 本项目以 **后端架构设计** 为主，侧重于高并发场景下的数据缓存策略、RESTful API 规范及多模块解耦实现。
+
+
 ---
 
 ## 🚀 项目简介
@@ -49,24 +53,46 @@
 
 ---
 
+
+
 ## 📂 项目结构
 
+```text
+Sky-Take-Out
+├── sky-take-out                # 后端核心工程 (Maven 多模块)
+│   ├── sky-common              # 公共模块：存放工具类、常量、异常类等
+│   ├── sky-pojo                # 实体类模块：存放 POJO、DTO、VO 等
+│   └── sky-server              # 业务服务模块：存放 Controller、Service、Mapper 及启动类
+├── Front-end                   # 管理端前端代码 (Vue/React)
+│   └── nginx-1.20.2            # 包含前端静态资源及 Nginx 配置文件
+├── mp-weixin                   # 微信小程序端代码 (用户端)
+├── prototype                   # 产品原型 (Axure 或 PDF 文件)
+├── README.md                   # 项目整体说明文档
+├── Mac部署指南.md               # 针对 macOS 环境的 Nginx/MySQL/Redis 部署手册
+└── .gitignore                  # Git 忽略文件配置 (已过滤 .DS_Store 及 target)
+
 ```
-Sky-take-out          后端完整代码
-│
-├── sky-server        后端服务
-├── sky-common        公共模块
-├── sky-pojo          实体类模块
+---
 
+## 模块说明
 
+### 后端模块
 
+| 模块名称       | 功能描述 |
+|----------------|---------|
+| `sky-server`   | 核心后端服务，处理请求、业务逻辑、接口提供、数据库操作 |
+| `sky-common`   | 公共模块，存放工具类、常量、异常处理类等 |
+| `sky-pojo`     | 实体类模块，对应数据库表结构 |
 
+### 前端模块
 
-├── sky-admin-front   管理端前端
-├── sky-user-front    用户端前端
-│
-└── README.md
-```
+| 模块名称           | 功能描述 |
+|--------------------|---------|
+| `Front-end`        | 前端 Web 端展示，HTML/CSS/JS 静态页面 + Nginx 配置 |
+| `mp-weixin`        | 微信小程序端，提供移动端下单和管理功能 |
+| `prototype`        | 产品原型文件，设计和交互说明 |
+| `README.md`        | 项目说明文件 |
+| `Mac部署指南.md`   | Mac 系统部署前端、后端和 Nginx 的全流程说明 |
 
 ---
 
